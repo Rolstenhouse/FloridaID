@@ -1,0 +1,27 @@
+<template name = "individualForm">
+	<!-- Process error on duplicate key entry  -->
+
+	{{#autoForm collection="Students" id="insertStudentForm" type="insert" class="ui form" validation="blur"}}
+	<div class="field">
+		{{> afQuickField name='_id'}}
+	</div>
+	<div class="field">
+		{{> afQuickField name='firstName'}}
+	</div>
+	<div class="field">
+		{{> afQuickField name='lastName'}}
+	</div>
+	<div class="field">
+		{{> afQuickField name='email'}}
+	</div>
+	<div class="field">
+		{{> afQuickField name='phone'}}
+	</div>
+	<button type="submit" class="ui button blue">Sign-Up</button>
+	{{/autoForm}}
+	{{#if Failure}}
+	<div class="ui segment">
+	{{Failure}}
+</div>
+	{{/if}}
+</template>

@@ -1,0 +1,14 @@
+<template name = "eventForm">
+	{{#autoForm collection="Events" id="insertEventForm" type="insert" class="ui form" validation="blur"}}
+	<div class="field">
+		{{> afQuickField name='organization'}}
+		</div>
+		<div class="field">
+		{{> afQuickField name='event'}}
+		</div>
+		<div class="field">
+		{{> afQuickField name='email'}}
+		</div>
+		<button type="submit" class="ui button orange">Create Event</button>
+	{{/autoForm}}
+</template>

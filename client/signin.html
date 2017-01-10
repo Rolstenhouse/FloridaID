@@ -1,0 +1,29 @@
+<template name="signin">
+	<!-- Generate some level of creating a new page for each event -->
+	<div class="holder {{Color}}">
+	<div class="ui one column centered middle aligned grid">
+	   <div class="ui column eight wide">
+				<div class="ui segment {{Color}} inverted">
+					<div class="header">Slide your UFID</div>
+					<div class="content">
+						{{#if Success}}
+							<h2>Welcome {{FirstName}}! Enjoy the event!</h2>
+						{{/if}}
+						{{#if Failure}}
+							{{#if NoAccount}}
+								<h2>Please visit <a href="/register">Register</a></h2>
+							{{else}}
+								<h2>{{ErrorMessage}}</h2>
+							{{/if}}
+						{{/if}}
+						<form class="barcode">
+							<input type="text" name="UFID" autofocus>
+							<button type="submit" class="ui button">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</template>

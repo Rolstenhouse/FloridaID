@@ -1,0 +1,25 @@
+<template name="home">
+	<div class="ui inverted vertical masthead center aligned segment">
+	<div class="ui container">
+	<div class="ui text container">
+	<h1 class = "ui inverted header">Welcome to FloridaID!</h1>
+	<h4>Developed with love for the UF community by @rolstenhouse</h4>
+	{{#if formMode}}
+		{{#if eventFormMode}}
+			{{> eventForm}}
+		{{/if}}
+		{{#if studentFormMode}}
+			{{> individualForm}}
+		{{/if}}
+	{{else}}
+	<button class="ui orange button" id="eventButton">
+		Create an Event
+	</button>
+	<button class="ui blue button" id="studentButton">
+		Create your Student Account
+	</button>
+	{{/if}}
+</div>
+</div>
+</div>
+</template>
