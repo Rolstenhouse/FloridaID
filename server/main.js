@@ -5,9 +5,9 @@ Meteor.startup(() => {
 });
 
 Meteor.publish('students', function() {
-  return Students.find(); 
+  return Students.find();
 });
 
 Meteor.publish('events', function() {
-  return Events.find(); 
+  return Events.find();
 });

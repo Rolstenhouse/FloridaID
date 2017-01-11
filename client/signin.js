@@ -40,6 +40,18 @@ Template.signin.helpers({
 });
 
 Template.signin.events({
+  'submit .export': function(e){
+    e.preventDefault();
+    Meteor.call('exportEventToCSV', this._id, function(err, data){
+      if(err){
+        console.log(err);
+      }
+      else{
+        console.log(data);
+      }
+    });
+  },
+
   'submit .barcode': function(e){
     e.preventDefault();
 

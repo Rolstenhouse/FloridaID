@@ -26,9 +26,22 @@ Meteor.methods({
 
     'exportEventToCSV':function(eventId){
       var event = Events.findOne({_id: eventId});
+      //console.log(event);
+      var attendees = "";
+      if(event.attendeesIDs == null){
+        console.log("Nothing to export");
+        return null;
+      }
 
-      var csv = Papa.unparse(event);
-
+      var attendees = event.attendeesIDs.map(function(x){
+        var student = Students.findOne({_id: x._id});
+        //Currently only taking one factor and merging it
+        student.timestamp = x.timestamp;
+        return student;
+      })
+      console.log("ATTENDEES",attendees);
+      var csv = Papa.unparse(attendees);
+      console.log("CSV",csv);
       return csv;
     },
 

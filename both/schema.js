@@ -112,5 +112,6 @@ Schemas.Events = new SimpleSchema({
 // ;20037828910203781281010?
 // ;20037828910100378289100?
 
+
 Students.attachSchema(Schemas.Students);
 Events.attachSchema(Schemas.Events);
