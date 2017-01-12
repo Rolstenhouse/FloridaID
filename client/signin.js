@@ -42,7 +42,7 @@ Template.signin.helpers({
 Template.signin.events({
   'submit .export': function(e){
     e.preventDefault();
-    Meteor.call('exportEventToCSV', this._id, function(err, data){
+    Meteor.call('emailCSV', this._id, this._email, function(err, data){
       if(err){
         console.log(err);
       }
