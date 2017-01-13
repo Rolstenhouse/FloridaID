@@ -1,46 +1,34 @@
 AutoForm.hooks({
 	insertStudentForm:{
-		onSubmit:function(insert, doc){
+		before:{
+			insert:function(doc){
 			doc._id = CryptoJS.MD5(doc._id.trim()).toString();
-			console.log(doc._id);
-			console.log(Students.findOne({_id: doc._id}));
-			if(Students.findOne({_id: doc._id})){
+			return doc;
+		}}, //Refactor later
+		onSubmit:function(insertDoc){
+			console.log('BEFORE CRYPTO', insertDoc._id);
+			insertDoc._id = CryptoJS.MD5(insertDoc._id.trim()).toString();
+			console.log('AFTER CRYPTO',insertDoc._id);
+			console.log(Students.findOne({_id: insertDoc._id}));
+			if(Students.findOne({_id: insertDoc._id})){
 				console.log("ERR");
 				this.done(new Error("You've created an account already"));
 			}
 			else{
+				return insertDoc;
 				this.done();
 			}
 			return false;
 		},
-		onSuccess:function(insert, doc){
-			console.log(doc);
+		onSuccess:function(insertDoc, result){
+
 			Session.set('studentFormMode', false);
 			return false;
 		},
-		onError:function(insert, err){
-			console.log(err);
+		onError:function(insertDoc, error){
+			console.log(insertDoc);
 			console.log("ERROR");
-			Session.set("Failure", err);
-			return false;
-		}
-	},
-	insertEventForm:{
-		onSubmit:function(doc){
-			Meteor.call('insertEventForm', doc);
-			this.done();
-		},
-		onSuccess:function(insert, doc){
-			Session.set('eventFormMode', false);
-			console.log(this);
-			Router.go('eventSignIn', {_id: this.docId});
-			//this.done();
-			return false;
-		},
-		onError: function(insert, err){
-			//Display custom error that ID has already been used
-			Session.set("Form Error", err)
-			//this.done();
+			Session.set("Failure", insertDoc);
 			return false;
 		}
 	}
